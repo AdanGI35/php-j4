@@ -1,0 +1,59 @@
+1- Liste de tous les utilisateurs : SELECT * from users;
+
+
+2.La liste de tous les utilisateurs rangée par noms de famille : SELECT * FROM users ORDER BY last_name
+
+
+3.Le dernier utilisateur inscrit : SELECT * FROM users ORDER BY id DESC LIMIT 1;
+
+
+
+4.La liste de tous les utilisateurs fêtant leur anniversaire ce mois-ci : SELECT * FROM users WHERE MONTH(birthdate) = MONTH(CURRENT_DATE)
+
+
+
+5.Le nombre total d'utilisateurs :SELECT COUNT(*) AS total_user_nbr FROM users
+
+
+
+6.La liste de tous les utilisateurs associés à leurs villes respectives :SELECT users. *, addresses.city FROM users JOIN addresses ON users.address_id = address_id
+
+
+
+7.La liste de tous les utilisateurs vivant à une adresse sans numéro : SELECT users. *, addresses.number FROM users JOIN addresses ON users.address_id = address_id
+
+
+
+8.La liste de tous les produits dont le prix est supérieur à 1 000 € :SELECT * FROM products WHERE price > 1000
+
+
+
+9.La liste de tous les produits associés à leurs photos respectives :SELECT products. *, pictures.* FROM products JOIN pictures ON products.id = products.id
+
+
+
+10.La liste de tous les produits appartenant à la catégorie « Voyage » : 
+SELECT products_categories. *, categories.title 
+FROM products_categories JOIN categories 
+ON products_categories.category_id = categories.id WHERE categories.title ="voyage"
+
+
+
+11.La liste de tous les utilisateurs ayant effectué plus de dix commandes :
+SELECT users.id, COUNT(*) AS orders.user_id
+FROM orders
+GROUP BY users.id
+HAVING COUNT(*) > 10;
+
+
+12.La liste de tous les produits achetés par le premier utilisateur inscrit.:
+SELECT users.*
+FROM users
+ORDER BY registration_date
+LIMIT 1;
+
+SELECT product.id
+FROM products_orders
+JOIN orders ON products_orders.product_id = order.id
+JOIN users ON users.order id = users.id
+
